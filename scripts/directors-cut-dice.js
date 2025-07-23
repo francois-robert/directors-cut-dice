@@ -304,6 +304,164 @@ class MessageGenerator {
   }
 }
 
+// Actor Sheet Integration
+class ActorSheetDiceButton {
+  static addDiceButton(app, html, data) {
+    // Only add button to character sheets
+    if (app.actor?.type !== 'character') return;
+    
+    // Create the dice buttons container
+    const buttonsContainer = $('<div class="dc-actor-buttons-container"></div>');
+    
+    // Create the dice button
+    const diceButton = $(`
+      <button type="button" class="dc-actor-dice-btn" title="${game.i18n.localize('directors-cut-dice.buttons.rollDice')}">
+        <i class="fas fa-dice"></i> <span class="button-text">${game.i18n.localize('directors-cut-dice.buttons.rollDice')}</span>
+      </button>
+    `);
+    
+    // Create the Russian Roulette button
+    const rouletteButton = $(`
+      <button type="button" class="dc-actor-roulette-btn" title="${game.i18n.localize('directors-cut-dice.buttons.russianRoulette')}">
+        <i class="fas fa-crosshairs"></i> <span class="button-text">${game.i18n.localize('directors-cut-dice.buttons.russianRoulette')}</span>
+      </button>
+    `);
+    
+    // Create the Coin Flip button
+    const coinButton = $(`
+      <button type="button" class="dc-actor-coin-btn" title="${game.i18n.localize('directors-cut-dice.buttons.coinFlip')}">
+        <i class="fas fa-coins"></i> <span class="button-text">${game.i18n.localize('directors-cut-dice.buttons.coinFlip')}</span>
+      </button>
+    `);
+    
+    // Add click handlers
+    diceButton.on('click', (event) => {
+      event.preventDefault();
+      ActorSheetDiceButton.showDiceDialog(app.actor);
+    });
+    
+    rouletteButton.on('click', (event) => {
+      event.preventDefault();
+      ActorSheetDiceButton.handleRussianRoulette(app.actor);
+    });
+    
+    coinButton.on('click', (event) => {
+      event.preventDefault();
+      ActorSheetDiceButton.handleCoinFlip(app.actor);
+    });
+    
+    // Add buttons to container
+    buttonsContainer.append(diceButton, rouletteButton, coinButton);
+    
+    // Find the header and add the buttons
+    const header = html.find('.window-header');
+    if (header.length > 0) {
+      // Add buttons to header
+      header.append(buttonsContainer);
+    } else {
+      // Fallback: add to top of the sheet content
+      const sheetBody = html.find('.sheet-body, .tab, form').first();
+      if (sheetBody.length > 0) {
+        sheetBody.prepend(`<div class="dc-dice-button-container"></div>`);
+        html.find('.dc-dice-button-container').append(buttonsContainer);
+      }
+    }
+  }
+  
+  static async showDiceDialog(actor) {
+    // Create dialog content with buttons for each dice count
+    const content = `
+      <div class="dc-dice-dialog">
+        <div class="form-group">
+          <label>${game.i18n.localize('directors-cut-dice.dialog.rollDice.label')}</label>
+          <div class="dc-dice-buttons">
+            ${[2, 3, 4, 5, 6, 7, 8, 9].map(num => 
+              `<button type="button" class="dc-dice-count-btn" data-dice="${num}">
+                <i class="fas fa-dice"></i> ${num}
+              </button>`
+            ).join('')}
+          </div>
+          <p class="hint">${game.i18n.localize('directors-cut-dice.dialog.rollDice.hint')}</p>
+        </div>
+      </div>
+    `;
+    
+    return new Promise((resolve) => {
+      new Dialog({
+        title: game.i18n.localize('directors-cut-dice.dialog.rollDice.title'),
+        content: content,
+        buttons: {
+          cancel: {
+            icon: '<i class="fas fa-times"></i>',
+            label: game.i18n.localize('directors-cut-dice.dialog.rollDice.cancel'),
+            callback: () => resolve(null)
+          }
+        },
+        default: 'cancel',
+        render: (html) => {
+          // Handle dice button clicks
+          html.find('.dc-dice-count-btn').on('click', (event) => {
+            const numDice = parseInt(event.currentTarget.dataset.dice);
+            // Create a chat message as if the user typed the command
+            const chatData = {
+              user: game.user.id,
+              speaker: ChatMessage.getSpeaker({ actor: actor })
+            };
+            DirectorsCutDice.handleRollCommand(numDice, chatData);
+            resolve(numDice);
+            
+            // Close the dialog
+            html.closest('.app').find('.header-button.close').click();
+          });
+          
+          // Focus first button
+          html.find('.dc-dice-count-btn').first().focus();
+          
+          // Allow number keys as shortcuts
+          html.on('keydown', (event) => {
+            const key = event.key;
+            if (key >= '2' && key <= '9') {
+              const numDice = parseInt(key);
+              // Create a chat message as if the user typed the command
+              const chatData = {
+                user: game.user.id,
+                speaker: ChatMessage.getSpeaker({ actor: actor })
+              };
+              DirectorsCutDice.handleRollCommand(numDice, chatData);
+              resolve(numDice);
+              
+              // Close the dialog
+              html.closest('.app').find('.header-button.close').click();
+            }
+          });
+        },
+        close: () => resolve(null)
+      }, {
+        width: 400,
+        height: 'auto'
+      }).render(true);
+    });
+  }
+  
+  static handleRussianRoulette(actor) {
+    // Create chat data and call the D6 command
+    const chatData = {
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+    DirectorsCutDice.handleD6Command(chatData);
+  }
+  
+  static handleCoinFlip(actor) {
+    // Create chat data and call the coin command
+    const chatData = {
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+    DirectorsCutDice.handleCoinCommand(chatData);
+  }
+}
+
 // Chat command handler
 class DirectorsCutDice {
   static ID = 'directors-cut-dice';
@@ -316,19 +474,22 @@ class DirectorsCutDice {
     
     // Add socket listeners for button interactions
     this.setupSocketListeners();
+    
+    // Setup actor sheet integration
+    this.setupActorSheetIntegration();
   }
 
   static registerChatCommands() {
     // Register /roll command
     Hooks.on('chatMessage', (chatLog, messageText, chatData) => {
-      const rollMatch = messageText.match(/^\/roll\s+(\d+)$/i);
-      if (rollMatch) {
-        const numDice = parseInt(rollMatch[1]);
-        if (numDice > 0 && numDice <= 20) {
-          this.handleRollCommand(numDice, chatData);
-          return false; // Prevent default processing
+              const rollMatch = messageText.match(/^\/roll\s+(\d+)$/i);
+        if (rollMatch) {
+          const numDice = parseInt(rollMatch[1]);
+          if (numDice >= 2 && numDice <= 9) {
+            this.handleRollCommand(numDice, chatData);
+            return false; // Prevent default processing
+          }
         }
-      }
 
       const coinMatch = messageText.match(/^\/coin$/i);
       if (coinMatch) {
@@ -470,6 +631,13 @@ class DirectorsCutDice {
       } catch (error) {
         ui.notifications.error(error.message);
       }
+    });
+  }
+  
+  static setupActorSheetIntegration() {
+    // Hook into actor sheet rendering to add dice button
+    Hooks.on('renderActorSheet', (app, html, data) => {
+      ActorSheetDiceButton.addDiceButton(app, html, data);
     });
   }
 }

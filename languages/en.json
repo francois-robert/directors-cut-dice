@@ -24,7 +24,10 @@
     "buttons": {
       "reroll": "🔄 Re-roll",
       "freereroll": "⚡ Free Re-roll",
-      "allin": "🎯 All In"
+      "allin": "🎯 All In",
+      "rollDice": "🎲 Roll Dice",
+      "russianRoulette": "🔫 Russian Roulette",
+      "coinFlip": "🪙 Coin Flip"
     },
     
     "phases": {
@@ -57,6 +60,16 @@
       "cannotFreeReroll": "Cannot free reroll",
       "cannotAllIn": "Cannot go all in",
       "rollHistoryNotFound": "Roll history not found"
+    },
+    
+    "dialog": {
+      "rollDice": {
+        "title": "Roll Dice",
+        "label": "Number of dice to roll:",
+        "hint": "Click a button to select the number of dice (2-9) or use keyboard shortcuts",
+        "confirm": "Roll",
+        "cancel": "Cancel"
+      }
     },
     
     "errors": {

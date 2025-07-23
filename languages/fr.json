@@ -24,7 +24,10 @@
     "buttons": {
       "reroll": "🔄 Relancer",
       "freereroll": "⚡ Relance gratuite",
-      "allin": "🎯 Tapis"
+      "allin": "🎯 Tapis",
+      "rollDice": "🎲 Lancer les dés",
+      "russianRoulette": "🔫 Roulette russe",
+      "coinFlip": "🪙 Pile ou face"
     },
     
     "phases": {
@@ -57,6 +60,16 @@
       "cannotFreeReroll": "Impossible de faire une relance gratuite",
       "cannotAllIn": "Impossible de tout miser",
       "rollHistoryNotFound": "Historique de lancer introuvable"
+    },
+    
+    "dialog": {
+      "rollDice": {
+        "title": "Lancer les dés",
+        "label": "Nombre de dés à lancer :",
+        "hint": "Cliquez sur un bouton pour sélectionner le nombre de dés (2-9) ou utilisez les raccourcis clavier",
+        "confirm": "Lancer",
+        "cancel": "Annuler"
+      }
     },
     
     "errors": {
