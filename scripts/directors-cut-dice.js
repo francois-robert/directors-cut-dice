@@ -275,8 +275,8 @@ class MessageGenerator {
     return message;
   }
 
-  _createDieHTML(dieValue) {
-    return `<span class="dc-die outgunned-${dieValue}"></span>`;
+  _createDieHTML(dieValue, theme = 'outgunned') {
+    return `<span class="dc-die ${theme}-${dieValue}"></span>`;
   }
 
   _getPhaseDisplayName(phase) {
@@ -410,7 +410,7 @@ class DirectorsCutDice {
     const messageData = {
       user: chatData.user,
       speaker: chatData.speaker,
-      content: `<div><strong>${game.i18n.localize('directors-cut-dice.messages.d6')}:</strong> ${messageGen._createDieHTML(result)}</div>`
+      content: `<div><strong>${game.i18n.localize('directors-cut-dice.messages.d6')}:</strong> ${messageGen._createDieHTML(result, 'normal')}</div>`
     };
     
     ChatMessage.create(messageData);
