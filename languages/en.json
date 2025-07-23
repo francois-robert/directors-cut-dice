@@ -1,0 +1,91 @@
+{
+  "directors-cut-dice": {
+    "name": "Director's Cut RPG Dice",
+    "description": "Advanced dice rolling system for Director's Cut RPG with reroll mechanics and interactive chat buttons",
+    
+    "commands": {
+      "roll": {
+        "name": "/roll",
+        "description": "Roll dice with reroll options",
+        "hint": "Usage: /roll [number of dice]"
+      },
+      "coin": {
+        "name": "/coin",
+        "description": "Flip a coin",
+        "hint": "Usage: /coin"
+      },
+      "d6": {
+        "name": "/d6", 
+        "description": "Roll a single d6",
+        "hint": "Usage: /d6"
+      }
+    },
+    
+    "buttons": {
+      "reroll": "🔄 Re-roll",
+      "freereroll": "⚡ Free Re-roll",
+      "allin": "🎯 All In"
+    },
+    
+    "phases": {
+      "initial": "🎲",
+      "reroll": "🔄",
+      "freereroll": "⚡", 
+      "allin": "🎯"
+    },
+    
+    "success": {
+      "basic": "Basic",
+      "critical": "Critical",
+      "extreme": "Extreme",
+      "impossible": "Impossible",
+      "jackpot": "Jackpot"
+    },
+    
+    "indicators": {
+      "success": "✅",
+      "failure": "❌",
+      "lost": "LOST"
+    },
+    
+    "messages": {
+      "coinFlip": "Coin flip",
+      "d6": "D6",
+      "coinHeads": "HEADS (bad)",
+      "coinTails": "TAILS (good)",
+      "cannotReroll": "Cannot reroll",
+      "cannotFreeReroll": "Cannot free reroll",
+      "cannotAllIn": "Cannot go all in",
+      "rollHistoryNotFound": "Roll history not found"
+    },
+    
+    "errors": {
+      "invalidConstructor": "Either numDice or rollHistory must be provided.",
+      "noInitialRoll": "No initial roll to reroll.",
+      "noRollForAllIn": "No roll to go all in on."
+    },
+    
+    "misc": {
+      "unknown": "Unknown"
+    },
+    
+    "settings": {
+      "menu": {
+        "name": "Dice Settings",
+        "label": "Configure Dice",
+        "hint": "Configure dice display options",
+        "title": "Director's Cut Dice Settings"
+      },
+      "showThumbnails": {
+        "name": "Show Dice Thumbnails",
+        "hint": "Display dice as visual icons instead of numbers"
+      },
+      "autoSort": {
+        "name": "Auto Sort Dice",
+        "hint": "Automatically sort dice results in ascending order"
+      },
+      "save": "Save Settings",
+      "saved": "Dice settings saved successfully!"
+    }
+  }
+} 

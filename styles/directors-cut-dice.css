@@ -1,0 +1,308 @@
+/* Director's Cut Dice Module Styles */
+
+.directors-cut-roll {
+  color: #aa201e	;
+  font-family: 'Signika', sans-serif;
+}
+
+.directors-cut-roll strong {
+  color:#aa201e	;
+}
+
+.directors-cut-roll hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #aa201e, transparent);
+  margin: 10px 0;
+}
+
+.directors-cut-roll div {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+/* Dice face styling */
+.dc-die {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 1px;
+  box-shadow: none;
+  position: relative;
+  vertical-align: middle;
+}
+
+/* Outgunned dice faces using actual image files */
+.dc-die.outgunned-1::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-1.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dc-die.outgunned-2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-2.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dc-die.outgunned-3::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-3.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dc-die.outgunned-4::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-4.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dc-die.outgunned-5::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-5.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.dc-die.outgunned-6::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background-image: url("../assets/dices/og-6.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Dice container for better spacing */
+.dc-dice-container {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+/* Button container */
+.dc-button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #7f8c8d;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Reroll buttons */
+.dc-reroll-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dc-reroll-btn .icon {
+  font-size: 14px;
+}
+
+.dc-reroll-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.dc-reroll-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific button colors */
+.dc-reroll-btn[data-action="reroll"] {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.dc-reroll-btn[data-action="freereroll"] {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.dc-reroll-btn[data-action="allin"] {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.dc-reroll-btn[data-action="reroll"]:hover {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.dc-reroll-btn[data-action="freereroll"]:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+}
+
+.dc-reroll-btn[data-action="allin"]:hover {
+  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+}
+
+/* Disabled button state */
+.dc-reroll-btn:disabled {
+  background: #7f8c8d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dc-reroll-btn:disabled:hover {
+  transform: none;
+  background: #7f8c8d;
+}
+
+/* Success type styling */
+.directors-cut-roll div:contains("Basic") strong {
+  color: #2ecc71;
+}
+
+.directors-cut-roll div:contains("Critical") strong {
+  color: #f39c12;
+}
+
+.directors-cut-roll div:contains("Extreme") strong {
+  color: #e74c3c;
+}
+
+.directors-cut-roll div:contains("Impossible") strong {
+  color: #9b59b6;
+}
+
+.directors-cut-roll div:contains("Jackpot") strong {
+  color: #f1c40f;
+  animation: jackpot-glow 2s ease-in-out infinite alternate;
+}
+
+.directors-cut-roll div:contains("LOST") strong {
+  color: #e74c3c;
+  text-decoration: line-through;
+}
+
+/* Jackpot animation */
+@keyframes jackpot-glow {
+  from {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 10px #f1c40f;
+  }
+  to {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), 0 0 20px #f1c40f, 0 0 30px #f1c40f;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .dc-button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dc-reroll-btn {
+    width: 100%;
+    max-width: 200px;
+    font-size: 11px;
+  }
+  
+  .dc-reroll-btn .icon {
+    font-size: 12px;
+  }
+  
+  .dc-die {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .dc-die.outgunned-1::before,
+  .dc-die.outgunned-2::before,
+  .dc-die.outgunned-3::before,
+  .dc-die.outgunned-4::before,
+  .dc-die.outgunned-5::before,
+  .dc-die.outgunned-6::before {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Coin flip and D6 specific styling */
+.directors-cut-roll .coin-flip,
+.directors-cut-roll .d6-roll {
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Success indicators */
+.directors-cut-roll .success-indicator {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* Tooltip for buttons */
+.dc-reroll-btn[title] {
+  position: relative;
+}
+
+.dc-reroll-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+} 

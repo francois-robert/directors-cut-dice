@@ -1,0 +1,39 @@
+{
+  "id": "directors-cut-dice",
+  "title": "Director's Cut RPG Dice",
+  "description": "Advanced dice rolling system for Director's Cut RPG with reroll mechanics and interactive chat buttons",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "HelP4co"
+    }
+  ],
+  "esmodules": [
+    "scripts/directors-cut-dice.js",
+    "scripts/dice-settings.js"
+  ],
+  "styles": [
+    "styles/directors-cut-dice.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "languages/fr.json"
+    }
+  ],
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE",
+  "readme": "README.md"
+} 

@@ -1,0 +1,91 @@
+{
+  "directors-cut-dice": {
+    "name": "Dés Director's Cut RPG",
+    "description": "Système de dés avancé pour Director's Cut RPG avec mécaniques de relance et boutons de chat interactifs",
+    
+    "commands": {
+      "roll": {
+        "name": "/roll",
+        "description": "Lancer des dés avec options de relance",
+        "hint": "Usage : /roll [nombre de dés]"
+      },
+      "coin": {
+        "name": "/coin",
+        "description": "Lancer une pièce",
+        "hint": "Usage : /coin"
+      },
+      "d6": {
+        "name": "/d6", 
+        "description": "Lancer un seul d6",
+        "hint": "Usage : /d6"
+      }
+    },
+    
+    "buttons": {
+      "reroll": "🔄 Relancer",
+      "freereroll": "⚡ Relance gratuite",
+      "allin": "🎯 Tapis"
+    },
+    
+    "phases": {
+      "initial": "🎲",
+      "reroll": "🔄",
+      "freereroll": "⚡", 
+      "allin": "🎯"
+    },
+    
+    "success": {
+      "basic": "Basique",
+      "critical": "Critique",
+      "extreme": "Extrême",
+      "impossible": "Impossible",
+      "jackpot": "Jackpot"
+    },
+    
+    "indicators": {
+      "success": "✅",
+      "failure": "❌",
+      "lost": "PERDU"
+    },
+    
+    "messages": {
+      "coinFlip": "Lancer de pièce",
+      "d6": "D6",
+      "coinHeads": "FACE (mauvais)",
+      "coinTails": "PILE (bon)",
+      "cannotReroll": "Impossible de relancer",
+      "cannotFreeReroll": "Impossible de faire une relance gratuite",
+      "cannotAllIn": "Impossible de tout miser",
+      "rollHistoryNotFound": "Historique de lancer introuvable"
+    },
+    
+    "errors": {
+      "invalidConstructor": "numDice ou rollHistory doit être fourni.",
+      "noInitialRoll": "Aucun lancer initial à relancer.",
+      "noRollForAllIn": "Aucun lancer pour tout miser."
+    },
+    
+    "misc": {
+      "unknown": "Inconnu"
+    },
+    
+    "settings": {
+      "menu": {
+        "name": "Paramètres des dés",
+        "label": "Configurer les dés",
+        "hint": "Configurer les options d'affichage des dés",
+        "title": "Paramètres des dés Director's Cut"
+      },
+      "showThumbnails": {
+        "name": "Afficher les miniatures de dés",
+        "hint": "Afficher les dés comme des icônes visuelles au lieu de nombres"
+      },
+      "autoSort": {
+        "name": "Tri automatique des dés",
+        "hint": "Trier automatiquement les résultats des dés par ordre croissant"
+      },
+      "save": "Sauvegarder les paramètres",
+      "saved": "Paramètres des dés sauvegardés avec succès !"
+    }
+  }
+} 

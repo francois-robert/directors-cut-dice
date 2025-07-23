@@ -1,0 +1,62 @@
+<form>
+  <div class="form-group">
+    <label for="showThumbnails">{{ localize "directors-cut-dice.settings.showThumbnails.name" }}</label>
+    <input type="checkbox" name="showThumbnails" id="showThumbnails" {{checked showThumbnails}}>
+    <p class="notes">{{ localize "directors-cut-dice.settings.showThumbnails.hint" }}</p>
+  </div>
+
+  <div class="form-group">
+    <label for="autoSort">{{ localize "directors-cut-dice.settings.autoSort.name" }}</label>
+    <input type="checkbox" name="autoSort" id="autoSort" {{checked autoSort}}>
+    <p class="notes">{{ localize "directors-cut-dice.settings.autoSort.hint" }}</p>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" name="submit">
+      <i class="fas fa-save"></i>
+      {{ localize "directors-cut-dice.settings.save" }}
+    </button>
+  </div>
+</form>
+
+<style>
+.dice-settings-menu {
+  padding: 20px;
+}
+
+.dice-settings-menu .form-group {
+  margin-bottom: 20px;
+}
+
+.dice-settings-menu label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.dice-settings-menu select,
+.dice-settings-menu input[type="checkbox"] {
+  margin-bottom: 5px;
+}
+
+.dice-settings-menu .notes {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin: 5px 0 0 0;
+}
+
+.dice-settings-menu button {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dice-settings-menu button:hover {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+</style> 
